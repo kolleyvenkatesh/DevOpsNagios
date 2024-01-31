@@ -1,0 +1,138 @@
+    1  yum install -y httpd httpd-tools php gcc glibc glibc-common gd gd-devel make net-snmp
+    2  useradd nagios
+    3  groupadd nagcmd
+    4  usermod -G nagcmd nagios
+    5  usermod -G nagcmd apache
+    6  mkdir /root/nagios
+    7  cd /root/nagios
+    8  wget https://assets.nagios.com/downloads/nagioscore/releases/nagios-4.4.9.tar.gz
+    9  yum install wget -y
+   10  wget https://assets.nagios.com/downloads/nagioscore/releases/nagios-4.4.9.tar.gz
+   11  wget https://nagios-plugins.org/download/nagios-plugins-2.3.3.tar.gz
+   12  tar -xf nagios-4.4.9.tar.gz
+   13  tar -xf nagios-plugins-2.3.3.tar.gz
+   14  ll
+   15  cd nagios-4.4.9/
+   16  ./configure --with-command-group=nagcmd
+   17  ./configure --with-command-group=nagcmd --with-ssl=/usr/bin/openssl
+   18  ./configure --with-ssl=/usr/bin/openssl --with-ssl-lib=/usr/lib/x86_64-linux-gnu
+   19  ll
+   20  ./configure --with-command-group=nagcmd
+   21  sudo yum install openssl-devel
+   22  ./configure --with-command-group=nagcmd
+   23  yum unstall unzip -y
+   24  yum install unzip -y
+   25  ./configure --with-command-group=nagcmd
+   26  make all
+   27  make install
+   28  make install-init
+   29  make install-commandmode
+   30  make install-config
+   31  vi /usr/local/nagios/etc/objects/contacts.cfg
+   32  make install-webconf
+   33  htpasswd -s -c /usr/local/nagios/etc/htpasswd.users nagiosadmin
+   34  systemctl restart httpd
+   35  cd /root/nagios
+   36  cd nagios-plugins-2.3.3
+   37  ./configure --with-nagios-user=nagios --with-nagios-group=nagios
+   38  make
+   39  make install
+   40  /usr/local/nagios/bin/nagios -v /usr/local/nagios/etc/nagios.cfg
+   41  systemctl enable nagios
+   42  systemctl enable httpd
+   43  systemctl restart nagios
+   44  cd /root
+   45  ls
+   46  cd nagios/
+   47  ll
+   48  wget https://github.com/NagiosEnterprises/nrpe/releases/download/nrpe-4.0.2/nrpe-4.0.2.tar.gz
+   49  ll
+   50  tar xzf nrpe-4.0.2.tar.gz
+   51  cd nrpe-4.0.2
+   52  ./configure
+   53  make all
+   54  make install-plugin
+   55  ll
+   56  ./configure
+   57  make all
+   58  make clean
+   59  ./configure
+   60  make all
+   61  ./configure --with-ssl=/path/to/openssl
+   62  make all
+   63  sudo yum install openssl-devel
+   64  which openssl-devel
+   65  ./configure --with-ssl=/usr/local/bin
+   66  make all
+   67  cd /usr/local/
+   68  cd bin/
+   69  ll
+   70  which openssl-devel
+   71  openssl version
+   72  which OpenSSL
+   73  find / -name OpenSSL
+   74  sudo yum install openssl-devel
+   75  find / -name openssl-devel-1:3.0.7-25.el9_3.x86_64
+   76  locate openssl-devel-1:3.0.7-25.el9_3.x86_64
+   77  locate openssl
+   78  which openssl
+   79  cd -
+   80  cd
+   81  cd nagios/
+   82  ls
+   83  ll
+   84  cd nrpe-4.0.2
+   85  ll
+   86  which openssl
+   87  ./configure --with-ssl=/usr/bin/openssl
+   88  make all
+   89  yum update openssl-devel
+   90  make
+   91  make all
+   92  openssl version
+   93  cd ..
+   94  wget https://github.com/NagiosEnterprises/nrpe/releases/download/nrpe-4.1.0/nrpe-4.1.0.tar.gz
+   95  ll
+   96  tar -xvzf nrpe-4.1.0.tar.gz
+   97  ll
+   98  cd nrpe-4.1.0
+   99  ./configure
+  100  make all
+  101  cd ..
+  102  ls
+  103  ll
+  104  cd nrpe-4.0.2
+  105  ll
+  106  ./configure
+  107  make all
+  108  ./configure --disable-ssl
+  109  make all
+  110  make install-plugin
+  111  make install-daemon
+  112  make install-config
+  113  make install-init
+  114  vi /usr/local/nagios/etc/nrpe.cfg
+  115  systemctl enable nrpe
+  116  systemctl restart nrpe
+  117  netstat -at | grep nrpe
+  118  netstat -na | grep "5666"
+  119  yum install netstat
+  120  /usr/local/nagios/libexec/check_nrpe -H 127.0.0.1
+  121  /usr/local/nagios/libexec/check_nrpe -H 127.0.0.1 -c check_users
+  122  /usr/local/nagios/libexec/check_nrpe -H 172.31.95.25
+  123  cd /usr/local/nagios/etc/
+  124  touch hosts.cfg
+  125  touch services.cfg
+  126  vi /usr/local/nagios/etc/nagios.cfg
+  127  vi /usr/local/nagios/etc/hosts.cfg
+  128  vi /usr/local/nagios/etc/services.cfg
+  129  vi /usr/local/nagios/etc/objects/commands.cfg
+  130  /usr/local/nagios/bin/nagios -v /usr/local/nagios/etc/nagios.cfg
+  131  vi /usr/local/nagios/etc/services.cfg
+  132  /usr/local/nagios/bin/nagios -v /usr/local/nagios/etc/nagios.cfg
+  133  vi /usr/local/nagios/etc/services.cfg
+  134  /usr/local/nagios/bin/nagios -v /usr/local/nagios/etc/nagios.cfg
+  135  systemctl restart nagios
+  136  ls
+  137  ll
+  138  cat hosts.cfg
