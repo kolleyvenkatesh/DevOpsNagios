@@ -2,7 +2,7 @@ How to Install Nagios Monitoring in RHEL
 
 Step 1: Install Apache and PHP Packages
 
-# yum install -y httpd httpd-tools php gcc glibc glibc-common gd gd-devel make net-snmp openssl-devel unzip wget
+```# yum install -y httpd httpd-tools php gcc glibc glibc-common gd gd-devel make net-snmp openssl-devel unzip wget```
 Step 2: Create Nagios User and Group
 # useradd nagios
 # groupadd nagcmd
