@@ -1,0 +1,30 @@
+   1  yum install -y gcc glibc glibc-common gd gd-devel make net-snmp openssl-devel tar wget
+    2  useradd nagios
+    3  passwd nagios
+    4  mkdir /root/nagios
+    5  cd /root/nagios
+    6  wget https://nagios-plugins.org/download/nagios-plugins-2.3.3.tar.gz
+    7  tar -xvf nagios-plugins-2.3.3.tar.gz
+    8  ls -l
+    9   cd nagios-plugins-2.3.3
+   10  ./configure
+   11  make
+   12  make install
+   13  chown nagios.nagios /usr/local/nagios
+   14  chown -R nagios.nagios /usr/local/nagios/libexec
+   15  cd /root/nagios
+   16  wget https://github.com/NagiosEnterprises/nrpe/releases/download/nrpe-4.0.2/nrpe-4.0.2.tar.gz
+   17  tar xzf nrpe-4.0.2.tar.gz
+   18  cd nrpe-4.0.2
+   19  ./configure
+   20  make all
+   21  ./configure --disable-ssl
+   22  make all
+   23  make install-plugin
+   24  make install-daemon
+   25  make install-config
+   26  make install-init
+   27  vi /usr/local/nagios/etc/nrpe.cfg
+   28  systemctl enable nrpe
+   29  systemctl restart nrpe
+   30  service nrpe status
